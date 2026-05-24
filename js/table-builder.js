@@ -35,6 +35,8 @@ function buildFoodTable(tableId, data, columns) {
         td.className = col.className;
       }
 
+      td.setAttribute('data-label', col.label);
+
       tr.appendChild(td);
     });
 

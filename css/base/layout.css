@@ -89,22 +89,5 @@ footer .gc {
 
 .footer-link:hover { opacity: 1; }
 
-@media (max-width: 1024px) {
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
-  .feature-card:nth-child(3n) { border-right: 1px solid var(--border-color); }
-  .feature-card:nth-child(2n) { border-right: none; }
-}
 
-@media (max-width: 780px) {
-  header.g { display: none; }
-  .mobile-header { display: flex !important; }
-  .features-grid { grid-template-columns: 1fr; }
-  .feature-card:nth-child(2n),
-  .feature-card:nth-child(3n) { border-right: none; }
-  .demo-section { grid-template-columns: 1fr; }
-  .hero-title { font-size: 2rem; }
-  .g { grid-template-columns: 1fr; }
-  .gc { border-right: none; }
-  footer.g .gc { border-bottom: 1px solid var(--border-color); }
-  footer.g .gc:last-child { border-bottom: none; }
-}
+

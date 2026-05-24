@@ -33,6 +33,4 @@
   transition: width 0.3s;
 }
 
-@media (max-width: 768px) {
-  .page-title { font-size: 2rem; }
-}
+
