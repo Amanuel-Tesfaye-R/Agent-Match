@@ -323,10 +323,11 @@ footer .gc {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   BREAKPOINT: MOBILE (≤780px)
+   BREAKPOINT: MOBILE (≤900px)
    Main transformation — single-column, centered, card tables
+   Covers all phones + small tablets in portrait
    ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 780px) {
+@media (max-width: 900px) {
 
   /* ─── Hide desktop header, show mobile ─── */
   header.g {
@@ -510,10 +511,10 @@ footer .gc {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   BREAKPOINT: SMALL MOBILE (≤479px)
-   Extra-tight spacing for small phones
+   BREAKPOINT: SMALL MOBILE (≤600px)
+   Tighter spacing for all phones (portrait & landscape)
    ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 479px) {
+@media (max-width: 600px) {
 
   main {
     padding: var(--sp-xs);
