@@ -69,3 +69,53 @@
 .view-all-btn:hover {
   background: #555b57;
 }
+
+@media (max-width: 540px) {
+  .calorie-table thead {
+    display: none;
+  }
+
+  .calorie-table,
+  .calorie-table tbody,
+  .calorie-table tr,
+  .calorie-table td {
+    display: block;
+  }
+
+  .calorie-table tr {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .calorie-table td {
+    padding: 0.35rem 0;
+    border-bottom: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .calorie-table td::before {
+    content: attr(data-label) ":";
+    font-size: clamp(0.65rem, 14px - 0.4vw, 0.75rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .calorie-table td .ingredients-list {
+    text-align: right;
+  }
+
+  .calorie-table td.cal-value {
+    justify-content: space-between;
+  }
+
+  .table-section {
+    margin: 1rem 0;
+  }
+}
