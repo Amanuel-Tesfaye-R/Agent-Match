@@ -357,7 +357,7 @@ footer .gc {
 
   .gc {
     border-right: none;
-    padding: var(--sp-sm);
+    padding: var(--sp-sm) !important;
   }
 
   /* ─── Hero centering & spacing ─── */
@@ -455,7 +455,7 @@ footer .gc {
   }
 
   .table-section {
-    margin: var(--sp-md) 0;
+    margin: var(--sp-lg) 0;
   }
 
   /* ─── Category pills — scroll or wrap tighter ─── */
@@ -526,10 +526,6 @@ footer .gc {
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
 
-  main {
-    padding: var(--sp-xs);
-  }
-
   .hero {
     padding: var(--sp-md) 0;
   }
@@ -566,10 +562,9 @@ footer .gc {
 
   /* Table cards — full bleed */
   .calorie-table tr {
-    margin-left: calc(-1 * var(--sp-xs));
-    margin-right: calc(-1 * var(--sp-xs));
     border-left: none;
     border-right: none;
+    border-radius: 0;
   }
 
   /* Footer items stack */
