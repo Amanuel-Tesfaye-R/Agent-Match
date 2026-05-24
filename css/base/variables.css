@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+:root {
+  --foreground: color-mix(in srgb, #FFFFFF 0%, transparent);
+  --foreground-base: #FFFFFF;
+  --foreground-alpha: 0;
+  --midground: color-mix(in srgb, #ffe6cb 100%, transparent);
+  --midground-base: #ffe6cb;
+  --midground-alpha: 1;
+  --background: color-mix(in srgb, #041C1C 100%, transparent);
+  --background-base: #041C1C;
+  --background-alpha: 1;
+  --accent: #ffff89;
+  --border-color: rgba(255, 230, 203, 0.2);
+  --border-light: rgba(255, 230, 203, 0.08);
+}

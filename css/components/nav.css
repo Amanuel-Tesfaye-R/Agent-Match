@@ -1,0 +1,53 @@
+.logo h2 {
+  font-family: 'Courier Prime', monospace;
+  font-size: 2.625rem;
+  line-height: 1;
+  letter-spacing: 0.0525rem;
+  font-weight: 700;
+  mix-blend-mode: plus-lighter;
+}
+
+.small-label {
+  font-size: 0.9375rem;
+  letter-spacing: 0.1875rem;
+  opacity: 0.5;
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  letter-spacing: 0.1875rem;
+  color: var(--midground-base);
+  text-decoration: none;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+
+.nav-link:hover { opacity: 1; }
+
+.nav-link .blink {
+  display: none;
+  width: 1.2ch;
+  height: 1.1em;
+  margin-left: 0.25rem;
+  margin-bottom: -0.15em;
+  background: var(--midground-base);
+  animation: blink-anim 1s step-end infinite;
+}
+
+.nav-link:hover .blink { display: inline-block; }
+
+.hamburger {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

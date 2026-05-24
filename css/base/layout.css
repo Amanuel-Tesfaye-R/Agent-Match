@@ -1,0 +1,110 @@
+main {
+  position: relative;
+  z-index: 2;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.g {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0;
+}
+
+header.g {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.gc {
+  padding: 1rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.gc:last-child { border-right: none; }
+
+.mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  margin-bottom: 0;
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  padding: 0 1rem 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 101;
+}
+
+.mobile-nav.open {
+  display: flex;
+}
+
+.mobile-nav .nav-link {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-nav .nav-link:last-of-type {
+  border-bottom: none;
+}
+
+.mobile-nav .small-label {
+  padding: 0.75rem 0 0.5rem;
+  display: block;
+}
+
+.mobile-nav .social-links {
+  display: flex;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+footer.g {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+}
+
+footer .gc {
+  padding: 1rem;
+}
+
+.footer-link {
+  color: var(--midground-base);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  letter-spacing: 0.1875rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.footer-link:hover { opacity: 1; }
+
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-card:nth-child(3n) { border-right: 1px solid var(--border-color); }
+  .feature-card:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 780px) {
+  header.g { display: none; }
+  .mobile-header { display: flex !important; }
+  .features-grid { grid-template-columns: 1fr; }
+  .feature-card:nth-child(2n),
+  .feature-card:nth-child(3n) { border-right: none; }
+  .demo-section { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2rem; }
+  .g { grid-template-columns: 1fr; }
+  .gc { border-right: none; }
+  footer.g .gc { border-bottom: 1px solid var(--border-color); }
+  footer.g .gc:last-child { border-bottom: none; }
+}

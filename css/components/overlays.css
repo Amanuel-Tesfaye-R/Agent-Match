@@ -1,0 +1,39 @@
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, #041C1C 100%, transparent);
+  mix-blend-mode: difference;
+  z-index: 1;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 0%, rgba(255,189,56,0) 60%, rgba(255,189,56,0.35) 100%);
+  mix-blend-mode: lighten;
+  opacity: 0.22;
+  z-index: 99;
+  pointer-events: none;
+}
+
+.diff-overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, #FFFFFF 0%, transparent);
+  mix-blend-mode: difference;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.glow-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 0%, rgba(255,189,56,0) 60%, rgba(255,189,56,0.35) 100%);
+  mix-blend-mode: lighten;
+  opacity: 0.22;
+  z-index: 99;
+  pointer-events: none;
+}

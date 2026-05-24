@@ -1,0 +1,71 @@
+.table-section {
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+}
+
+.table-label {
+  font-size: 0.9375rem;
+  letter-spacing: 0.1875rem;
+  font-weight: 700;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.calorie-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Courier Prime', monospace;
+  text-transform: none;
+}
+
+.calorie-table th {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  opacity: 0.7;
+}
+
+.calorie-table td {
+  font-size: 0.8125rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  opacity: 0.8;
+}
+
+.calorie-table tr:hover td {
+  background: rgba(255, 230, 203, 0.03);
+}
+
+.calorie-table .cal-value {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.ingredients-list {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+.view-all-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  color: var(--midground-base);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.view-all-btn:hover {
+  background: #555b57;
+}
