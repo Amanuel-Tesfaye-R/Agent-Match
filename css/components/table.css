@@ -13,9 +13,16 @@
 
 .calorie-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-family: 'Courier Prime', monospace;
   text-transform: none;
+}
+
+.calorie-table th,
+.calorie-table td {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .calorie-table th {
