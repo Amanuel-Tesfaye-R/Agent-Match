@@ -35,10 +35,4 @@
 
 @media (max-width: 768px) {
   .page-title { font-size: 2rem; }
-  .calorie-table th,
-  .calorie-table td { padding: 0.5rem; font-size: 0.7rem; }
-}
-
-@media (max-width: 600px) {
-  .calorie-table { font-size: 0.65rem; }
 }
