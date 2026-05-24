@@ -19,18 +19,18 @@
 }
 
 .calorie-table th {
-  font-size: clamp(0.75rem, 16.8px - 0.4vw, 0.9375rem);
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 0.75rem clamp(0.5rem, 0.25rem + 1vw, 1rem);
+  padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   opacity: 0.7;
 }
 
 .calorie-table td {
-  font-size: clamp(0.8125rem, 17.8px - 0.4vw, 1rem);
-  padding: 0.75rem clamp(0.5rem, 0.25rem + 1vw, 1rem);
+  font-size: 0.8125rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--border-light);
   opacity: 0.8;
 }
@@ -45,7 +45,7 @@
 }
 
 .ingredients-list {
-  font-size: clamp(0.75rem, 16.8px - 0.4vw, 0.875rem);
+  font-size: 0.75rem;
   opacity: 0.6;
   text-transform: none;
   line-height: 1.5;
@@ -55,7 +55,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-family: 'Courier Prime', monospace;
-  font-size: clamp(0.75rem, 16.8px - 0.4vw, 0.875rem);
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: transparent;
@@ -68,54 +68,4 @@
 
 .view-all-btn:hover {
   background: #555b57;
-}
-
-@media (max-width: 540px) {
-  .calorie-table thead {
-    display: none;
-  }
-
-  .calorie-table,
-  .calorie-table tbody,
-  .calorie-table tr,
-  .calorie-table td {
-    display: block;
-  }
-
-  .calorie-table tr {
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-    padding: 0.75rem;
-  }
-
-  .calorie-table td {
-    padding: 0.35rem 0;
-    border-bottom: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-
-  .calorie-table td::before {
-    content: attr(data-label) ":";
-    font-size: clamp(0.65rem, 14px - 0.4vw, 0.75rem);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.5;
-    flex-shrink: 0;
-  }
-
-  .calorie-table td .ingredients-list {
-    text-align: right;
-  }
-
-  .calorie-table td.cal-value {
-    justify-content: space-between;
-  }
-
-  .table-section {
-    margin: 1rem 0;
-  }
 }

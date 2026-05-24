@@ -428,13 +428,21 @@ footer .gc {
 
   /* Data-label pseudo elements for card layout */
   .calorie-table td::before {
-    content: attr(data-label);
+    content: attr(data-label) ":";
     font-size: var(--fs-pill);
     letter-spacing: var(--ls-normal);
     text-transform: uppercase;
     opacity: 0.5;
     flex-shrink: 0;
     min-width: 5rem;
+  }
+
+  .calorie-table td .ingredients-list {
+    text-align: right;
+  }
+
+  .calorie-table td:has(.ingredients-list) {
+    flex-wrap: wrap;
   }
 
   /* Calorie value highlight in card */
