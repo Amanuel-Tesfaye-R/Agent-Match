@@ -63,4 +63,4 @@ The item will appear on both pages on next reload.
 
 ## License
 
-MIT License · 2026
+
