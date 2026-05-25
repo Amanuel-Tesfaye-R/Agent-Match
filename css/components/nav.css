@@ -59,11 +59,12 @@
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.2s;
-  padding: 0.25rem;
-  display: flex;
+  padding: 0;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 0;
+  vertical-align: middle;
 }
 
 .theme-toggle-btn:hover {
@@ -71,8 +72,15 @@
 }
 
 .theme-toggle-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
+}
+
+header .gc a[href="#"] {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  line-height: 0;
 }
 
 .theme-toggle-btn .sun { display: none; }

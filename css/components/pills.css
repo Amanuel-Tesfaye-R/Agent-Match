@@ -22,6 +22,6 @@
 .cat-pill:hover,
 .cat-pill.active {
   background: var(--midground-base);
-  color: #000;
+  color: var(--background-base);
   border-color: var(--midground-base);
 }
