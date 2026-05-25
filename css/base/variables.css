@@ -16,14 +16,14 @@
 }
 
 [data-theme="light"] {
-  --foreground-base: #0a1f1f;
-  --midground-base: #1a3636;
-  --background-base: #f2ede4;
+  --foreground-base: #061414;
+  --midground-base: #0d2424;
+  --background-base: #e4ece8;
   --accent: #2b7a78;
-  --border-color: rgba(10, 31, 31, 0.15);
-  --border-light: rgba(10, 31, 31, 0.06);
+  --border-color: rgba(6, 20, 20, 0.15);
+  --border-light: rgba(6, 20, 20, 0.06);
 }
 
 [data-theme="light"] body {
-  background: #f2ede4;
+  background: #e4ece8;
 }
