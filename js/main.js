@@ -1,3 +1,23 @@
+const STORAGE_KEY = 'nutriagent-theme';
+
+function getPreferredTheme() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(STORAGE_KEY, theme);
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+document.addEventListener('DOMContentLoaded', () => applyTheme(getPreferredTheme()));
+
 let isViewAll = false;
 let currentFilter = 'all';
 

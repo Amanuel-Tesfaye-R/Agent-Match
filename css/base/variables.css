@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
 
-:root {
+:root,
+[data-theme="dark"] {
   --foreground: color-mix(in srgb, #FFFFFF 0%, transparent);
   --foreground-base: #FFFFFF;
   --foreground-alpha: 0;
@@ -13,4 +14,17 @@
   --accent: #ffff89;
   --border-color: rgba(255, 230, 203, 0.2);
   --border-light: rgba(255, 230, 203, 0.08);
+  --overlay-bg: color-mix(in srgb, #041C1C 100%, transparent);
+  --glow-bg: radial-gradient(ellipse at 0% 0%, rgba(255,189,56,0) 60%, rgba(255,189,56,0.35) 100%);
+}
+
+[data-theme="light"] {
+  --foreground-base: #0a1f1f;
+  --midground-base: #1a3636;
+  --background-base: #f2ede4;
+  --accent: #2b7a78;
+  --border-color: rgba(10, 31, 31, 0.15);
+  --border-light: rgba(10, 31, 31, 0.06);
+  --overlay-bg: transparent;
+  --glow-bg: radial-gradient(ellipse at 0% 0%, rgba(43,122,120,0) 50%, rgba(43,122,120,0.12) 100%);
 }
