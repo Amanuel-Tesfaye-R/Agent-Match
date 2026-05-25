@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'agentarc-theme';
+const STORAGE_KEY = 'agentmatch-theme';
 
 function getPreferredTheme() {
   const stored = localStorage.getItem(STORAGE_KEY);
