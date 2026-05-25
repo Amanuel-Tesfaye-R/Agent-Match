@@ -6,12 +6,11 @@
 
 html {
   font-size: 16px;
-  transition: background 0.3s, color 0.3s;
 }
 
 body {
   font-family: 'Courier Prime', monospace;
-  background: var(--background-base);
+  background: #000;
   color: var(--midground-base);
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
