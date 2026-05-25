@@ -166,7 +166,7 @@
 <script src="js/main.js"></script>
 <script>
 buildAgentTable('#agentTable', AGENTS, [
-  { key: 'name', label: 'Agent' },
+  { key: 'name', label: 'Agent', render: (v, item) => item.url ? '<a href="' + item.url + '" target="_blank" rel="noopener" class="agent-link">' + v + ' ↗</a>' : v },
   { key: 'category', label: 'Category', render: v => '<small style="opacity:0.5;letter-spacing:0.1em;">' + v + '</small>' },
   { key: 'description', label: 'Capability', render: v => '<span class="ingredients-list">' + v + '</span>' },
   { key: 'pricing', label: 'Pricing', render: (v, item) => {

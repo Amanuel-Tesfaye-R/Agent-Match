@@ -21,6 +21,15 @@ function buildAgentTable(tableId, data, columns) {
     tr.dataset.category = item.category || '';
     tr.dataset.pricing = item.pricing || '';
 
+    if (item.url) {
+      tr.style.cursor = 'pointer';
+      tr.addEventListener('click', function(e) {
+        if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+          window.open(item.url, '_blank', 'noopener');
+        }
+      });
+    }
+
     columns.forEach(col => {
       const td = document.createElement('td');
       const val = item[col.key];
