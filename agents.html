@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Calorie Database — NutriAgent</title>
+<title>Agent Directory — AgentArc</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/pages/calories.css">
+<link rel="stylesheet" href="css/pages/agents.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -15,17 +15,17 @@
   <header class="g">
     <div class="gc logo" style="grid-column:span 3;">
       <a href="index.html" style="text-decoration:none;color:inherit;">
-        <h2>Nutri<br/>Agent</h2>
+        <h2>Agent<br/>Arc</h2>
       </a>
     </div>
     <div class="gc" style="grid-column:span 2;display:flex;align-items:center;">
       <a href="index.html" class="nav-link">Home <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column:span 2;display:flex;align-items:center;">
-      <a href="calories.html" class="nav-link" style="opacity:0.5;">Calories <span class="blink"></span></a>
+      <a href="agents.html" class="nav-link" style="opacity:0.5;">Agents <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column:span 2;display:flex;align-items:center;">
-      <span class="nav-link" style="opacity:0.5;cursor:default;">Meal Plans</span>
+      <a href="agents.html" class="nav-link">Match <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column:span 3;display:flex;align-items:center;justify-content:space-between;">
       <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">Socials</small>
@@ -51,7 +51,7 @@
 
   <div class="mobile-header">
     <a href="index.html" style="text-decoration:none;color:inherit;" class="logo">
-      <h2>Nutri<br/>Agent</h2>
+      <h2>Agent<br/>Arc</h2>
     </a>
     <div style="display:flex;align-items:center;gap:0.5rem;">
       <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -71,8 +71,8 @@
 
   <nav class="mobile-nav">
     <a href="index.html" class="nav-link">Home <span class="blink"></span></a>
-    <a href="calories.html" class="nav-link">Calories <span class="blink"></span></a>
-    <span class="nav-link" style="opacity:0.5;cursor:default;">Meal Plans</span>
+    <a href="agents.html" class="nav-link">Agents <span class="blink"></span></a>
+    <a href="agents.html" class="nav-link">Match <span class="blink"></span></a>
     <small class="small-label">Socials</small>
     <div class="social-links">
       <a href="#" style="opacity:0.6;transition:opacity 0.2s;color:inherit;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
@@ -84,40 +84,45 @@
     </div>
   </nav>
 
-  <h1 class="page-title">Food Calorie<br/>Database</h1>
-  <p class="page-sub">Complete nutrition reference with calories per 100g and key ingredients. Data sourced from USDA and OpenFoodFacts.</p>
+  <h1 class="page-title">AI Agent<br/>Directory</h1>
+  <p class="page-sub">Complete catalog of AI agents across every category. Curated and categorised to help you find exactly the right tool for any task — from video generation to code assistants, music composition to research.</p>
 
   <div class="table-section">
     <div class="g">
       <div class="gc" style="grid-column:span 12;border-bottom:1px solid rgba(255,230,203,0.2);">
-        <small class="table-label">Full Database <span style="opacity:0.5;letter-spacing:normal;">— <span id="totalCount">0</span> items</span></small>
+        <small class="table-label">Full Directory <span style="opacity:0.5;letter-spacing:normal;">— <span id="totalCount">0</span> agents</span></small>
       </div>
     </div>
     <div class="category-filter">
       <button class="cat-pill active" onclick="filterTable('all', this)">All</button>
-      <button class="cat-pill" onclick="filterTable('Fruits', this)">Fruits</button>
-      <button class="cat-pill" onclick="filterTable('Vegetables', this)">Vegetables</button>
-      <button class="cat-pill" onclick="filterTable('Proteins', this)">Proteins</button>
-      <button class="cat-pill" onclick="filterTable('Grains', this)">Grains</button>
-      <button class="cat-pill" onclick="filterTable('Dairy', this)">Dairy</button>
-      <button class="cat-pill" onclick="filterTable('Nuts & Seeds', this)">Nuts & Seeds</button>
-      <button class="cat-pill" onclick="filterTable('Beverages', this)">Beverages</button>
-      <button class="cat-pill" onclick="filterTable('low', this)">Low Cal (&lt;50)</button>
-      <button class="cat-pill" onclick="filterTable('high', this)">High Cal (&gt;300)</button>
+      <button class="cat-pill" onclick="filterTable('LLMs & Chat', this)">LLMs & Chat</button>
+      <button class="cat-pill" onclick="filterTable('Image Generation', this)">Image Gen</button>
+      <button class="cat-pill" onclick="filterTable('Video Generation', this)">Video Gen</button>
+      <button class="cat-pill" onclick="filterTable('Music & Audio', this)">Music & Audio</button>
+      <button class="cat-pill" onclick="filterTable('Code & Development', this)">Code & Dev</button>
+      <button class="cat-pill" onclick="filterTable('Video & Image Editing', this)">Editing</button>
+      <button class="cat-pill" onclick="filterTable('Research & Search', this)">Research</button>
+      <button class="cat-pill" onclick="filterTable('Productivity & Writing', this)">Productivity</button>
+      <button class="cat-pill" onclick="filterTable('Speech & Voice', this)">Speech & Voice</button>
+      <button class="cat-pill" onclick="filterTable('3D & Design', this)">3D & Design</button>
+      <button class="cat-pill" onclick="filterTable('Data & Analytics', this)">Data</button>
+      <button class="cat-pill" onclick="filterTable('free', this)">Free</button>
+      <button class="cat-pill" onclick="filterTable('paid', this)">Paid</button>
     </div>
     <div class="search-wrap">
       <i class="fas fa-search search-icon"></i>
-      <input class="search-bar" type="text" placeholder="Search food or ingredient..." onkeyup="searchTable(this.value)">
+      <input class="search-bar" type="text" placeholder="Search agents by name, category, or capability..." onkeyup="searchTable(this.value)">
     </div>
     <div style="overflow-x:auto;">
-    <table class="calorie-table" id="calorieTable">
+    <table class="calorie-table" id="agentTable">
       <thead>
         <tr>
-          <th>Food</th>
+          <th>Agent</th>
           <th>Category</th>
-          <th>Cal / 100g</th>
-          <th>Cal / Serving</th>
-          <th>Key Ingredients / Nutrients</th>
+          <th>Capability</th>
+          <th>Pricing</th>
+          <th>Platform</th>
+          <th>Best For</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -126,50 +131,54 @@
     </div>
     <div style="padding:1rem;border-top:1px solid rgba(255,230,203,0.2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
       <small style="opacity:0.5;letter-spacing:0.1em;">
-        <span id="visibleCount">40</span> items shown
+        <span id="visibleCount">40</span> agents shown
       </small>
       <div style="display:flex;gap:1rem;align-items:center;">
-        <small style="opacity:0.5;letter-spacing:0.1em;">Protein</small>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:30%;background:var(--accent);"></div></div>
-        <small style="opacity:0.5;letter-spacing:0.1em;">Carbs</small>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:50%;background:var(--midground-base);"></div></div>
-        <small style="opacity:0.5;letter-spacing:0.1em;">Fat</small>
-        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:20%;background:#ff6b6b;"></div></div>
+        <small style="opacity:0.5;letter-spacing:0.1em;">Open Source</small>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:18%;background:var(--accent);"></div></div>
+        <small style="opacity:0.5;letter-spacing:0.1em;">Freemium</small>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:38%;background:var(--midground-base);"></div></div>
+        <small style="opacity:0.5;letter-spacing:0.1em;">Paid</small>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:44%;background:#ff6b6b;"></div></div>
       </div>
     </div>
   </div>
 
   <footer class="g">
     <div class="gc" style="grid-column:span 2;">
-      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.7;">NutriAgent</small>
+      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.7;">AgentArc</small>
       <small class="mid-text" style="margin-left:0.5rem;">v1.0.0</small>
     </div>
     <div class="gc" style="grid-column:span 4;">
-      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">Data: USDA, OpenFoodFacts, NCCDB</small>
+      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">Curated directory · 10 categories · 70+ agents</small>
     </div>
     <div class="gc" style="grid-column:span 3;">
-      <a class="footer-link" href="https://nousresearch.com" target="_blank">Reference: Hermes Agent ↗</a>
+      <a class="footer-link" href="#" target="_blank">Suggest an Agent ↗</a>
     </div>
     <div class="gc" style="grid-column:span 3;">
-      <small class="mid-text">MIT License · 2026</small>
+      <small class="mid-text">Open Source · MIT License · 2026</small>
     </div>
   </footer>
 </main>
 
-<script src="data/foods.js"></script>
+<script src="data/agents.js"></script>
 <script src="js/table-builder.js"></script>
 <script src="js/main.js"></script>
 <script>
-buildFoodTable('#calorieTable', FOODS, [
-  { key: 'name', label: 'Food' },
+buildAgentTable('#agentTable', AGENTS, [
+  { key: 'name', label: 'Agent' },
   { key: 'category', label: 'Category', render: v => '<small style="opacity:0.5;letter-spacing:0.1em;">' + v + '</small>' },
-  { key: 'cal', label: 'Cal / 100g', className: 'cal-value' },
-  { key: 'serving', label: 'Cal / Serving' },
-  { key: 'ingredients', label: 'Key Ingredients / Nutrients', render: v => '<span class="ingredients-list">' + v + '</span>' }
+  { key: 'description', label: 'Capability', render: v => '<span class="ingredients-list">' + v + '</span>' },
+  { key: 'pricing', label: 'Pricing', render: (v, item) => {
+    const cls = v === 'Free (Open)' || v === 'Free' ? 'tag-free' : v === 'Freemium' ? 'tag-freemium' : 'tag-paid';
+    return '<span class="pricing-tag ' + cls + '">' + v + '</span>';
+  }},
+  { key: 'platform', label: 'Platform', render: v => '<small style="opacity:0.6;">' + v + '</small>' },
+  { key: 'best_for', label: 'Best For', render: v => '<span class="ingredients-list" style="opacity:0.8;">' + v + '</span>' }
 ]);
 showRandomRows(10);
-document.getElementById('totalCount').textContent = FOODS.length;
+document.getElementById('totalCount').textContent = AGENTS.length;
 </script>
-<script src="js/pages/calories.js"></script>
+<script src="js/pages/agents.js"></script>
 </body>
 </html>

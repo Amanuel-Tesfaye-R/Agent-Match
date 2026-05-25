@@ -1,4 +1,4 @@
-function buildFoodTable(tableId, data, columns) {
+function buildAgentTable(tableId, data, columns) {
   const table = document.querySelector(tableId);
   if (!table) return;
 
@@ -18,8 +18,8 @@ function buildFoodTable(tableId, data, columns) {
 
   data.forEach(item => {
     const tr = document.createElement('tr');
-    tr.dataset.category = item.category;
-    tr.dataset.calories = item.cal;
+    tr.dataset.category = item.category || '';
+    tr.dataset.pricing = item.pricing || '';
 
     columns.forEach(col => {
       const td = document.createElement('td');

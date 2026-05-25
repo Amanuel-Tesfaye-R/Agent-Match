@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'nutriagent-theme';
+const STORAGE_KEY = 'agentarc-theme';
 
 function getPreferredTheme() {
   const stored = localStorage.getItem(STORAGE_KEY);
@@ -33,14 +33,27 @@ function copyText(text, btn) {
   });
 }
 
+function normalizePricing(v) {
+  const s = v.toLowerCase();
+  if (s.includes('free')) return 'free';
+  if (s === 'freemium') return 'freemium';
+  return 'paid';
+}
+
 function applyFilter() {
-  const rows = document.querySelectorAll('#calorieTable tbody tr');
+  const rows = document.querySelectorAll('#agentTable tbody tr');
   const visible = [];
   rows.forEach(row => {
     let show = false;
     if (currentFilter === 'all') show = true;
-    else if (currentFilter === 'low') show = parseInt(row.dataset.calories) < 50;
-    else if (currentFilter === 'high') show = parseInt(row.dataset.calories) > 300;
+    else if (currentFilter === 'free') {
+      const pricing = row.dataset.pricing || '';
+      show = pricing.toLowerCase().includes('free');
+    }
+    else if (currentFilter === 'paid') {
+      const pricing = row.dataset.pricing || '';
+      show = !pricing.toLowerCase().includes('free') && pricing.toLowerCase() !== 'freemium';
+    }
     else show = row.dataset.category === currentFilter;
     row.style.display = show ? '' : 'none';
     if (show) visible.push(row);
@@ -67,8 +80,8 @@ function applyFilter() {
   }
 }
 
-function filterTable(category, btn) {
-  currentFilter = category;
+function filterTable(filterValue, btn) {
+  currentFilter = filterValue;
   isViewAll = false;
   applyFilter();
   document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
@@ -77,7 +90,7 @@ function filterTable(category, btn) {
 
 function searchTable(query) {
   const q = query.toLowerCase();
-  const rows = document.querySelectorAll('#calorieTable tbody tr');
+  const rows = document.querySelectorAll('#agentTable tbody tr');
   const visible = [];
   rows.forEach(row => {
     const text = row.textContent.toLowerCase();

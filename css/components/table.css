@@ -13,7 +13,7 @@
 
 .calorie-table {
   width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   border-collapse: collapse;
   font-family: 'Courier Prime', monospace;
   text-transform: none;
@@ -23,6 +23,28 @@
 .calorie-table td {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+#agentTable th:first-child,
+#agentTable td:first-child {
+  min-width: 11rem;
+}
+
+#agentTable th:nth-child(3),
+#agentTable td:nth-child(3) {
+  min-width: 18rem;
+}
+
+#agentTable th:last-child,
+#agentTable td:last-child {
+  min-width: 12rem;
+}
+
+#agentTable .ingredients-list {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  line-height: 1.5;
+  display: block;
 }
 
 .calorie-table th {
@@ -44,11 +66,6 @@
 
 .calorie-table tr:hover td {
   background: rgba(255, 230, 203, 0.03);
-}
-
-.calorie-table .cal-value {
-  font-weight: 700;
-  color: var(--accent);
 }
 
 .ingredients-list {
@@ -75,4 +92,29 @@
 
 .view-all-btn:hover {
   background: #555b57;
+}
+
+/* Pricing tags */
+.pricing-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid currentColor;
+  text-transform: uppercase;
+}
+
+.tag-free {
+  color: #69ffb3;
+  border-color: rgba(105, 255, 179, 0.3);
+}
+
+.tag-freemium {
+  color: var(--accent);
+  border-color: rgba(255, 255, 137, 0.3);
+}
+
+.tag-paid {
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.3);
 }

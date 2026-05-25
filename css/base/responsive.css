@@ -1,18 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   RESPONSIVE DESIGN SYSTEM — NutriAgent
-   ═══════════════════════════════════════════════════════════════
-   Breakpoints:
-     --xs:  0–479px     (small phones)
-     --sm:  480–767px   (large phones / landscape)
-     --md:  768–1023px  (tablets)
-     --lg:  1024–1439px (small laptops)
-     --xl:  1440px+     (desktops)
-
-   Strategy:
-     • Fluid font-sizes via clamp() keyed to viewport width
-     • Spacing scale that compresses proportionally on small screens
-     • Table → card layout transformation below tablet
-     • Full-bleed centering for all content sections on mobile
+   RESPONSIVE DESIGN SYSTEM — AgentArc
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── FLUID TYPOGRAPHY SCALE ─── */
@@ -443,10 +430,6 @@ footer .gc {
 
   .calorie-table td:not(:last-child) {
     margin-bottom: var(--sp-xs);
-  }
-
-  .calorie-table td.cal-value {
-    font-size: 1rem;
   }
 
   .calorie-table .ingredients-list {

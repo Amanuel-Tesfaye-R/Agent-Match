@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NutriAgent — The Diet That Grows With You</title>
+<title>AgentArc — AI Agent Explorer & Matchmaker</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/pages/home.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -17,17 +17,17 @@
   <header class="g">
     <div class="gc logo" style="grid-column: span 3;">
       <a href="/" style="text-decoration:none;color:inherit;">
-        <h2>Nutri<br/>Agent</h2>
+        <h2>Agent<br/>Arc</h2>
       </a>
     </div>
     <div class="gc" style="grid-column: span 2;display:flex;align-items:center;">
       <a href="/" class="nav-link">Home <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column: span 2;display:flex;align-items:center;">
-      <a href="calories.html" class="nav-link">Calories <span class="blink"></span></a>
+      <a href="agents.html" class="nav-link">Agents <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column: span 2;display:flex;align-items:center;">
-      <span class="nav-link" style="opacity:0.5;">Meal Plans</span>
+      <a href="agents.html" class="nav-link">Match <span class="blink"></span></a>
     </div>
     <div class="gc" style="grid-column: span 3;display:flex;align-items:center;justify-content:space-between;">
       <small class="small-label">Socials</small>
@@ -53,7 +53,7 @@
 
   <div class="mobile-header">
     <a href="/" style="text-decoration:none;color:inherit;" class="logo">
-      <h2>Nutri<br/>Agent</h2>
+      <h2>Agent<br/>Arc</h2>
     </a>
     <div style="display:flex;align-items:center;gap:0.5rem;">
       <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
@@ -73,8 +73,8 @@
 
   <nav class="mobile-nav">
     <a href="/" class="nav-link">Home <span class="blink"></span></a>
-    <a href="calories.html" class="nav-link">Calories <span class="blink"></span></a>
-    <span class="nav-link" style="opacity:0.5;">Meal Plans</span>
+    <a href="agents.html" class="nav-link">Agents <span class="blink"></span></a>
+    <a href="agents.html" class="nav-link">Match <span class="blink"></span></a>
     <small class="small-label">Socials</small>
     <div class="social-links">
       <a href="#" style="opacity:0.6;transition:opacity 0.2s;color:inherit;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
@@ -90,26 +90,26 @@
     <div class="gc" style="grid-column: span 12;">
       <div class="hero">
         <div class="fade-in">
-          <small class="hero-tag">Open Source • MIT License</small>
-          <span class="hero-title">The Diet That<br/>Grows With You.</span>
+          <small class="hero-tag">Curated Directory • 70+ Agents</small>
+          <span class="hero-title">Find Your AI.<br/>The Agent That Fits Your Flow.</span>
         </div>
         <div class="fade-in">
-          <p class="hero-desc">Not a fad diet tethered to a single meal plan or a calculator wrapper around a single formula. A nutrition system that lives with you, remembers what works, and gets healthier the longer you follow it.</p>
+          <p class="hero-desc">Not a list of wrappers around the same API. A living directory of specialised AI agents — video creators, music composers, coding partners, research assistants, and everything in between. Tell us what you need. We will point you to the right tool.</p>
         </div>
         <div class="fade-in" style="width:100%;display:flex;flex-direction:column;align-items:center;">
           <div class="code-block-wrap">
             <div class="code-block-header">
-              <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">1. Track</small>
-              <button class="copy-btn" onclick="copyText('nutri track --meal breakfast --cal 350', this)">Copy</button>
+              <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">1. Describe</small>
+              <button class="copy-btn" onclick="copyText('agent match --task \"generate a music video for my song\"', this)">Copy</button>
             </div>
-            <div class="code-block"><code>nutri track --meal breakfast --cal 350</code></div>
+            <div class="code-block"><code>agent match --task "generate a music video for my song"</code></div>
           </div>
           <div class="code-block-wrap" style="margin-top:0.5rem;">
             <div class="code-block-header">
-              <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">2. Analyze</small>
-              <button class="copy-btn" onclick="copyText('nutri analyze --daily', this)">Copy</button>
+              <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">2. Discover</small>
+              <button class="copy-btn" onclick="copyText('agent match --category image-generation --budget free', this)">Copy</button>
             </div>
-            <div class="code-block"><code>nutri analyze --daily</code></div>
+            <div class="code-block"><code>agent match --category image-generation --budget free</code></div>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
               <span class="terminal-dot"></span>
               <span class="terminal-dot"></span>
             </div>
-            <span class="terminal-title">NutriAgent</span>
+            <span class="terminal-title">AgentArc — Match Engine</span>
           </div>
           <div class="terminal-body" id="terminalBody">
             <div id="terminalLines"></div>
@@ -134,7 +134,7 @@
           </div>
         </div>
         <div class="demo-side" style="display:block;">
-          <small>NutriAgent</small>
+          <small>AgentArc</small>
         </div>
       </div>
     </div>
@@ -143,50 +143,50 @@
   <div class="features-section">
     <div class="g" style="margin-bottom:0;">
       <div class="gc" style="grid-column:span 12;border-bottom:1px solid rgba(255,230,203,0.2);">
-        <small class="features-label"><span style="font-weight:700;">Features</span></small>
+        <small class="features-label"><span style="font-weight:700;">Categories</span></small>
       </div>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Tracks Every Meal</small>
-          <p class="feature-desc">Breakfast, lunch, dinner, snacks — log calories and macros from any meal. Start on one device, pick up on another.</p>
+          <small class="feature-title">LLMs & Chat</small>
+          <p class="feature-desc">General-purpose language models for reasoning, writing, coding, and conversation. GPT-4, Claude, Gemini, Llama, and more.</p>
         </div>
       </div>
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Grows With You</small>
-          <p class="feature-desc">Persistent nutrition memory and auto-adjusted targets — it learns your habits and never forgets what worked for your goals.</p>
+          <small class="feature-title">Image Generation</small>
+          <p class="feature-desc">Text-to-image and image-to-image models for art, design, marketing, and concept work. DALL-E, Midjourney, Flux, Stable Diffusion.</p>
         </div>
       </div>
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Scheduled Check-Ins</small>
-          <p class="feature-desc">Natural language reminders for meals, water intake, and weekly weigh-ins — running automatically through your preferred channel.</p>
+          <small class="feature-title">Video Generation</small>
+          <p class="feature-desc">From text to cinematic clips. Sora, Runway, Pika, Veo — generate, edit, and enhance videos with natural language prompts.</p>
         </div>
       </div>
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Meal Planning AI</small>
-          <p class="feature-desc">Isolated meal plan generators with their own recipe databases and macro calculators for zero-guesswork nutrition pipelines.</p>
+          <small class="feature-title">Music & Audio</small>
+          <p class="feature-desc">Full song generation, voice cloning, TTS, and audio production. Suno, Udio, ElevenLabs, AIVA for every sound need.</p>
         </div>
       </div>
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Real Ingredient Data</small>
-          <p class="feature-desc">Five data sources — USDA, OpenFoodFacts, branded products, custom recipes, and barcode scanning — with portion normalization.</p>
+          <small class="feature-title">Code & Development</small>
+          <p class="feature-desc">AI coding agents that write, debug, refactor, and deploy. Copilot, Cursor, Devin, Claude Code, and the next generation of dev tools.</p>
         </div>
       </div>
       <div class="feature-card">
         <div class="feature-hover"></div>
         <div>
-          <small class="feature-title">Full Food Database</small>
-          <p class="feature-desc">Web search for any dish, ingredient scanning, portion estimation via vision, recipe import, and multi-model macro breakdown.</p>
+          <small class="feature-title">Research & Search</small>
+          <p class="feature-desc">Deep research agents, academic search, literature reviews, and evidence-based answers. Perplexity, Consensus, Elicit, NotebookLM.</p>
         </div>
       </div>
     </div>
@@ -197,34 +197,38 @@
       <div class="table-section">
         <div class="g">
           <div class="gc" style="grid-column:span 12;border-bottom:1px solid rgba(255,230,203,0.2);">
-            <small class="table-label">Food Calorie Database</small>
+            <small class="table-label">Agent Directory</small>
           </div>
         </div>
         <div class="category-filter">
           <button class="cat-pill active" onclick="filterTable('all', this)">All</button>
-          <button class="cat-pill" onclick="filterTable('Fruits', this)">Fruits</button>
-          <button class="cat-pill" onclick="filterTable('Vegetables', this)">Vegetables</button>
-          <button class="cat-pill" onclick="filterTable('Proteins', this)">Proteins</button>
-          <button class="cat-pill" onclick="filterTable('Snacks', this)">Snacks</button>
-          <button class="cat-pill" onclick="filterTable('Grains', this)">Grains</button>
-          <button class="cat-pill" onclick="filterTable('Dairy', this)">Dairy</button>
-          <button class="cat-pill" onclick="filterTable('Fast Foods', this)">Fast Foods</button>
-          <button class="cat-pill" onclick="filterTable('Ethiopian Foods', this)">Ethiopian Dishes</button>
-          <button class="cat-pill" onclick="filterTable('Nuts & Seeds', this)">Nuts & Seeds</button>
-          <button class="cat-pill" onclick="filterTable('Beverages', this)">Beverages</button>
+          <button class="cat-pill" onclick="filterTable('LLMs & Chat', this)">LLMs & Chat</button>
+          <button class="cat-pill" onclick="filterTable('Image Generation', this)">Image</button>
+          <button class="cat-pill" onclick="filterTable('Video Generation', this)">Video</button>
+          <button class="cat-pill" onclick="filterTable('Music & Audio', this)">Music & Audio</button>
+          <button class="cat-pill" onclick="filterTable('Code & Development', this)">Code & Dev</button>
+          <button class="cat-pill" onclick="filterTable('Video & Image Editing', this)">Editing</button>
+          <button class="cat-pill" onclick="filterTable('Research & Search', this)">Research</button>
+          <button class="cat-pill" onclick="filterTable('Productivity & Writing', this)">Productivity</button>
+          <button class="cat-pill" onclick="filterTable('Speech & Voice', this)">Speech & Voice</button>
+          <button class="cat-pill" onclick="filterTable('3D & Design', this)">3D & Design</button>
+          <button class="cat-pill" onclick="filterTable('Data & Analytics', this)">Data</button>
+          <button class="cat-pill" onclick="filterTable('free', this)">Free</button>
+          <button class="cat-pill" onclick="filterTable('paid', this)">Paid</button>
         </div>
         <div class="search-wrap">
           <i class="fas fa-search search-icon"></i>
-          <input class="search-bar" type="text" placeholder="Search food..." onkeyup="searchTable(this.value)">
+          <input class="search-bar" type="text" placeholder="Search agents..." onkeyup="searchTable(this.value)">
         </div>
         <div style="overflow-x:auto;">
-        <table class="calorie-table" id="calorieTable">
+        <table class="calorie-table" id="agentTable">
           <thead>
             <tr>
-              <th>Food</th>
+              <th>Agent</th>
               <th>Category</th>
-              <th>Calories (per 100g)</th>
-              <th>Key Ingredients</th>
+              <th>Capability</th>
+              <th>Pricing</th>
+              <th>Best For</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -237,45 +241,52 @@
 
   <footer class="g">
     <div class="gc" style="grid-column:span 2;">
-      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.7;">NutriAgent</small>
+      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.7;">AgentArc</small>
       <small class="mid-text" style="margin-left:0.5rem;">v1.0.0</small>
     </div>
     <div class="gc" style="grid-column:span 4;">
-      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">Data sourced from USDA & OpenFoodFacts</small>
+      <small style="font-size:0.9375rem;letter-spacing:0.1875rem;opacity:0.5;">Curated AI agent directory — updated regularly</small>
     </div>
     <div class="gc" style="grid-column:span 3;">
-      <a class="footer-link" href="https://nousresearch.com" target="_blank">Reference: Hermes Agent ↗</a>
+      <a class="footer-link" href="#" target="_blank">Suggest an Agent ↗</a>
     </div>
     <div class="gc" style="grid-column:span 3;">
-      <small class="mid-text">MIT License · 2026</small>
+      <small class="mid-text">Open Source · MIT License · 2026</small>
     </div>
   </footer>
 </main>
 
-<script src="data/foods.js"></script>
+<script src="data/agents.js"></script>
 <script src="js/table-builder.js"></script>
 <script src="js/main.js"></script>
 <script>
-buildFoodTable('#calorieTable', FOODS, [
-  { key: 'name', label: 'Food' },
+buildAgentTable('#agentTable', AGENTS, [
+  { key: 'name', label: 'Agent' },
   { key: 'category', label: 'Category', render: v => '<small style="opacity:0.5;letter-spacing:0.1em;">' + v + '</small>' },
-  { key: 'cal', label: 'Calories (per 100g)', className: 'cal-value' },
-  { key: 'ingredients', label: 'Key Ingredients', render: v => '<span class="ingredients-list">' + v + '</span>' }
+  { key: 'description', label: 'Capability', render: v => '<span class="ingredients-list">' + v + '</span>' },
+  { key: 'pricing', label: 'Pricing', render: (v, item) => {
+    const cls = v === 'Free (Open)' || v === 'Free' ? 'tag-free' : v === 'Freemium' ? 'tag-freemium' : 'tag-paid';
+    return '<span class="pricing-tag ' + cls + '">' + v + '</span>';
+  }},
+  { key: 'best_for', label: 'Best For', render: v => '<span class="ingredients-list" style="opacity:0.8;">' + v + '</span>' }
 ]);
 showRandomRows(10);
 </script>
 <script>
 const terminalLines = [
-  { text: '> nutri track --meal lunch --cal 520', type: 'cmd' },
-  { text: '  ✓ logged: grilled chicken salad (520 cal)', type: 'success' },
-  { text: '> nutri analyze --week', type: 'cmd' },
+  { text: '> agent match --task "make a music video"', type: 'cmd' },
+  { text: '  ✓ analysing task: music video production', type: 'success' },
   { text: '  ──────────────────────────────────', type: 'divider' },
-  { text: '  week avg: 1,850 cal/day', type: 'output' },
-  { text: '  protein: 142g | carbs: 198g | fat: 56g', type: 'output' },
-  { text: '  deficit: -350 cal/day', type: 'output' },
+  { text: '  top matches for your task:', type: 'output' },
+  { text: '  • Suno — full song generation', type: 'match' },
+  { text: '  • Runway Gen-3 — video production', type: 'match' },
+  { text: '  • Pika 2.0 — motion control & lip sync', type: 'match' },
   { text: '  ──────────────────────────────────', type: 'divider' },
-  { text: '> nutri suggest --goal muscle', type: 'cmd' },
-  { text: '  suggested: +200 cal, +30g protein', type: 'success' },
+  { text: '> agent match --category image-gen --budget free', type: 'cmd' },
+  { text: '  ✓ filtering: image generation, free tier', type: 'success' },
+  { text: '  • Stable Diffusion 3.5 — self-host, open', type: 'match' },
+  { text: '  • Flux Pro — fast, high-quality', type: 'match' },
+  { text: '  • Leonardo AI — freemium, game assets', type: 'match' },
 ];
 
 function animateTerminal() {
@@ -294,6 +305,9 @@ function animateTerminal() {
       if (line.type === 'cmd') currentLineEl.style.opacity = '0.5';
       else if (line.type === 'success' || line.type === 'output' || line.type === 'divider') {
         currentLineEl.style.color = 'var(--accent)';
+      } else if (line.type === 'match') {
+        currentLineEl.style.color = 'var(--accent)';
+        currentLineEl.style.opacity = '0.9';
       }
       container.appendChild(currentLineEl);
     }
