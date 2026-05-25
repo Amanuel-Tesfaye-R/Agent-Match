@@ -6,16 +6,9 @@ function getPreferredTheme() {
   return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
-function setThemeIcon(theme) {
-  document.querySelectorAll('.theme-toggle i').forEach(el => {
-    el.className = theme === 'dark' ? 'fa-regular fa-moon' : 'fa-regular fa-sun';
-  });
-}
-
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem(STORAGE_KEY, theme);
-  setThemeIcon(theme);
 }
 
 function toggleTheme() {
