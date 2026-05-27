@@ -304,16 +304,21 @@ export async function initGalaxy(config = {}) {
   let targetActive = 0.0;
   let smoothActive = 0.0;
 
+  let onMove = null;
   if (opts.mouseInteraction) {
-    const onMove = e => {
+    onMove = e => {
       const rect = container.getBoundingClientRect();
-      targetMouse.x = (e.clientX - rect.left) / rect.width;
-      targetMouse.y = 1.0 - (e.clientY - rect.top) / rect.height;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      if (x < 0 || x > rect.width || y < 0 || y > rect.height) {
+        targetActive = 0.0;
+        return;
+      }
+      targetMouse.x = x / rect.width;
+      targetMouse.y = 1.0 - y / rect.height;
       targetActive = 1.0;
     };
-    const onLeave = () => { targetActive = 0.0; };
-    container.addEventListener('mousemove', onMove);
-    container.addEventListener('mouseleave', onLeave);
+    document.addEventListener('mousemove', onMove);
   }
 
   // Resize
@@ -389,9 +394,7 @@ export async function initGalaxy(config = {}) {
     io.disconnect();
     canvas.removeEventListener('webglcontextlost', onLost);
     canvas.removeEventListener('webglcontextrestored', onRestored);
-    if (opts.mouseInteraction) {
-      // can't easily remove specific listeners, but container will be removed
-    }
+    if (onMove) document.removeEventListener('mousemove', onMove);
     try { document.body.removeChild(container); } catch {}
   };
 }
