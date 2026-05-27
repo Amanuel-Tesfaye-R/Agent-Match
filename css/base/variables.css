@@ -7,8 +7,8 @@
   --midground: color-mix(in srgb, #ffe6cb 100%, transparent);
   --midground-base: #ffe6cb;
   --midground-alpha: 1;
-  --background: color-mix(in srgb, #041C1C 100%, transparent);
-  --background-base: #041C1C;
+  --background: color-mix(in srgb, #000000 100%, transparent);
+  --background-base: #000000;
   --background-alpha: 1;
   --accent: #ffff89;
   --border-color: rgba(255, 230, 203, 0.2);
@@ -16,15 +16,15 @@
 }
 
 [data-theme="light"] {
-  --foreground-base: #143023;
-  --midground-base: #143023;
-  --background-base: #ffffff;
-  --accent: #c17f4e;
-  --border-color: rgba(20, 48, 35, 0.12);
-  --border-light: rgba(20, 48, 35, 0.06);
+  --foreground-base: #FFFFFF;
+  --midground-base: #ffe6cb;
+  --background-base: #000000;
+  --accent: #ffff89;
+  --border-color: rgba(255, 230, 203, 0.2);
+  --border-light: rgba(255, 230, 203, 0.08);
 }
 
 [data-theme="light"] body {
-  background: #ffffff;
+  background: #000000;
   color: var(--foreground-base);
 }
