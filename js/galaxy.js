@@ -229,7 +229,7 @@ export async function initGalaxy(config = {}) {
     mouseRepulsion: config.mouseRepulsion ?? true,
     twinkleIntensity: config.twinkleIntensity ?? 0.3,
     rotationSpeed: config.rotationSpeed ?? 0.1,
-    repulsionStrength: config.repulsionStrength ?? 2,
+    repulsionStrength: config.repulsionStrength ?? 0.8,
     autoCenterRepulsion: config.autoCenterRepulsion ?? 0,
     transparent: config.transparent ?? true,
     mouseInteraction: config.mouseInteraction ?? true,
