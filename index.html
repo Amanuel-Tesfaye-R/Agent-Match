@@ -358,9 +358,9 @@ function renderSpotlight() {
     container.innerHTML = picks.map(a => `
       <a href="${a.url || '#'}" target="_blank" rel="noopener" class="spotlight-card" data-name="${a.name}">
         <span class="spotlight-card-name">${a.name} ↗</span>
-        <span class="spotlight-card-category">${a.category}</span>
         <span class="spotlight-card-desc">${a.description}</span>
         <div class="spotlight-card-footer">
+          <span class="cat-tag">${a.category}</span>
           <span class="pricing-tag ${tagClass(a.pricing)}">${a.pricing}</span>
         </div>
       </a>
