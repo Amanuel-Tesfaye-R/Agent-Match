@@ -18,15 +18,13 @@
 [data-theme="light"] {
   --foreground-base: #143023;
   --midground-base: #143023;
-  --background-base: #f5f1ea;
+  --background-base: #f7f7f5;
   --accent: #c17f4e;
   --border-color: rgba(20, 48, 35, 0.12);
   --border-light: rgba(20, 48, 35, 0.06);
 }
 
 [data-theme="light"] body {
-  background: #f5f1ea;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  background-blend-mode: overlay;
+  background: #f7f7f5;
   color: var(--foreground-base);
 }
