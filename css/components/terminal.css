@@ -61,17 +61,26 @@
 }
 
 .demo-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px double var(--midground-base);
+  border-left: none;
   background: var(--background-base);
   position: relative;
-  display: none;
+  min-height: 160px;
 }
 
 .demo-side small {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
   color: var(--accent);
   font-size: 0.9375rem;
-  letter-spacing: 0.1875rem;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
   z-index: 1;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.demo-side:hover small {
+  opacity: 1;
 }
