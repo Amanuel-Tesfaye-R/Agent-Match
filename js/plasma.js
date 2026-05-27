@@ -1,23 +1,21 @@
-import { Renderer, Program, Mesh, Triangle } from 'ogl';
-
-const hexToRgb = hex => {
+function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!result) return [1, 0.5, 0.2];
   return [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255];
-};
+}
 
-const vertex = `#version 300 es
+const vertexSrc = `#version 300 es
 precision highp float;
-in vec2 position;
-in vec2 uv;
+in vec2 a_position;
+in vec2 a_uv;
 out vec2 vUv;
 void main() {
-  vUv = uv;
-  gl_Position = vec4(position, 0.0, 1.0);
+  vUv = a_uv;
+  gl_Position = vec4(a_position, 0.0, 1.0);
 }
 `;
 
-const fragment = `#version 300 es
+const fragmentSrc = `#version 300 es
 precision highp float;
 uniform vec2 iResolution;
 uniform float iTime;
@@ -83,148 +81,194 @@ function getThemeColor() {
   return theme === 'light' ? '#c17f4e' : '#ffff89';
 }
 
-export function initPlasma() {
-  if (!window.WebGLRenderingContext) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+function compileShader(gl, type, src) {
+  const s = gl.createShader(type);
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    console.warn('[plasma] shader error:', gl.getShaderInfoLog(s));
+    gl.deleteShader(s);
+    return null;
+  }
+  return s;
+}
 
+function createProgram(gl, vsSrc, fsSrc) {
+  const vs = compileShader(gl, gl.VERTEX_SHADER, vsSrc);
+  const fs = compileShader(gl, gl.FRAGMENT_SHADER, fsSrc);
+  if (!vs || !fs) return null;
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+    console.warn('[plasma] program error:', gl.getProgramInfoLog(prog));
+    return null;
+  }
+  return prog;
+}
+
+function getUniform(gl, prog, name) {
+  return gl.getUniformLocation(prog, name);
+}
+
+export async function initPlasma() {
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'display:block;width:100%;height:100%';
   const container = document.createElement('div');
   container.className = 'plasma-bg';
+  container.appendChild(canvas);
   document.body.prepend(container);
 
-  const mousePos = { x: 0, y: 0 };
-  let currentColor = getThemeColor();
-
-  let renderer;
-  try {
-    renderer = new Renderer({
-      webgl: 2,
-      alpha: true,
-      antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
-    });
-  } catch {
+  const gl = canvas.getContext('webgl2', { alpha: true, antialias: false, premultipliedAlpha: false });
+  if (!gl) {
+    console.log('[plasma] WebGL2 unavailable');
     return;
   }
 
-  const gl = renderer.gl;
-  if (!gl) return;
-
-  const canvas = gl.canvas;
-  canvas.style.display = 'block';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  container.appendChild(canvas);
-
-  const geometry = new Triangle(gl);
-
-  function buildProgram(colorHex) {
-    const rgb = hexToRgb(colorHex);
-    return new Program(gl, {
-      vertex,
-      fragment,
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: { value: new Float32Array([1, 1]) },
-        uCustomColor: { value: new Float32Array(rgb) },
-        uUseCustomColor: { value: 1.0 },
-        uSpeed: { value: 0.4 },
-        uDirection: { value: 1.0 },
-        uScale: { value: 1.1 },
-        uOpacity: { value: 0.45 },
-        uMouse: { value: new Float32Array([0, 0]) },
-        uMouseInteractive: { value: 1.0 }
-      }
-    });
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    console.log('[plasma] reduced motion');
+    return;
   }
 
-  let program = buildProgram(currentColor);
-  const mesh = new Mesh(gl, { geometry, program });
+  // Fullscreen triangle (covers clip space with 3 vertices)
+  const positions = new Float32Array([-1, -1,  3, -1,  -1, 3]);
+  const uvs = new Float32Array([0, 0,  2, 0,  0, 2]);
 
-  const handleMouseMove = e => {
-    const rect = container.getBoundingClientRect();
-    mousePos.x = e.clientX - rect.left;
-    mousePos.y = e.clientY - rect.top;
-    const m = program.uniforms.uMouse.value;
-    m[0] = mousePos.x;
-    m[1] = mousePos.y;
-  };
-  container.addEventListener('mousemove', handleMouseMove);
+  const posBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-  const themeObserver = new MutationObserver(() => {
-    const newColor = getThemeColor();
-    if (newColor !== currentColor) {
-      currentColor = newColor;
-      const rgb = hexToRgb(newColor);
-      const u = program.uniforms.uCustomColor.value;
-      u[0] = rgb[0];
-      u[1] = rgb[1];
-      u[2] = rgb[2];
+  const uvBuf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, uvBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, uvs, gl.STATIC_DRAW);
+
+  const prog = createProgram(gl, vertexSrc, fragmentSrc);
+  if (!prog) return;
+
+  const aPos = gl.getAttribLocation(prog, 'a_position');
+  const aUv = gl.getAttribLocation(prog, 'a_uv');
+
+  // VAO
+  const vao = gl.createVertexArray();
+  gl.bindVertexArray(vao);
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+  gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+  gl.bindBuffer(gl.ARRAY_BUFFER, uvBuf);
+  gl.enableVertexAttribArray(aUv);
+  gl.vertexAttribPointer(aUv, 2, gl.FLOAT, false, 0, 0);
+  gl.bindVertexArray(null);
+
+  const uResolution = getUniform(gl, prog, 'iResolution');
+  const uTime = getUniform(gl, prog, 'iTime');
+  const uCustomColor = getUniform(gl, prog, 'uCustomColor');
+  const uUseCustomColor = getUniform(gl, prog, 'uUseCustomColor');
+  const uSpeed = getUniform(gl, prog, 'uSpeed');
+  const uDirection = getUniform(gl, prog, 'uDirection');
+  const uScale = getUniform(gl, prog, 'uScale');
+  const uOpacity = getUniform(gl, prog, 'uOpacity');
+  const uMouse = getUniform(gl, prog, 'uMouse');
+  const uMouseInteractive = getUniform(gl, prog, 'uMouseInteractive');
+
+  let currentColor = getThemeColor();
+  const colorRgb = hexToRgb(currentColor);
+  let resolution = [1, 1];
+  let mousePos = [0, 0];
+
+  gl.useProgram(prog);
+  gl.uniform3fv(uCustomColor, colorRgb);
+  gl.uniform1f(uUseCustomColor, 1.0);
+  gl.uniform1f(uSpeed, 0.4);
+  gl.uniform1f(uDirection, 1.0);
+  gl.uniform1f(uScale, 1.1);
+  gl.uniform1f(uOpacity, 0.45);
+  gl.uniform1f(uMouseInteractive, 1.0);
+  gl.uniform2fv(uMouse, mousePos);
+
+  // Theme watcher
+  const themeObs = new MutationObserver(() => {
+    const c = getThemeColor();
+    if (c !== currentColor) {
+      currentColor = c;
+      gl.useProgram(prog);
+      gl.uniform3fv(uCustomColor, hexToRgb(c));
     }
   });
-  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
+  // Mouse
+  const onMouse = e => {
+    const rect = container.getBoundingClientRect();
+    mousePos[0] = e.clientX - rect.left;
+    mousePos[1] = e.clientY - rect.top;
+    gl.useProgram(prog);
+    gl.uniform2fv(uMouse, mousePos);
+  };
+  container.addEventListener('mousemove', onMouse);
+
+  // Resize
   const setSize = () => {
     const rect = container.getBoundingClientRect();
-    const width = Math.max(1, Math.floor(rect.width));
-    const height = Math.max(1, Math.floor(rect.height));
-    renderer.setSize(width, height);
-    const res = program.uniforms.iResolution.value;
-    res[0] = gl.drawingBufferWidth;
-    res[1] = gl.drawingBufferHeight;
+    const w = Math.max(1, Math.floor(rect.width));
+    const h = Math.max(1, Math.floor(rect.height));
+    canvas.width = w;
+    canvas.height = h;
+    gl.viewport(0, 0, w, h);
+    gl.useProgram(prog);
+    gl.uniform2f(uResolution, w, h);
+    resolution = [w, h];
   };
-
   const ro = new ResizeObserver(setSize);
   ro.observe(container);
   setSize();
 
-  let raf = 0;
-  let contextLost = false;
+  // Render loop
+  let running = true;
   let isVisible = true;
   const t0 = performance.now();
 
-  const loop = t => {
-    if (contextLost || !isVisible) return;
-    program.uniforms.iTime.value = (t - t0) * 0.001;
-    renderer.render({ scene: mesh });
-    raf = requestAnimationFrame(loop);
-  };
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-  const handleContextLost = e => {
-    e.preventDefault();
-    contextLost = true;
-    cancelAnimationFrame(raf);
-  };
-  const handleContextRestored = () => {
-    contextLost = false;
-    if (isVisible) {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(loop);
-    }
-  };
-  canvas.addEventListener('webglcontextlost', handleContextLost);
-  canvas.addEventListener('webglcontextrestored', handleContextRestored);
+  function loop(t) {
+    if (!running || !isVisible) return;
+    const elapsed = (t - t0) * 0.001;
 
+    gl.useProgram(prog);
+    gl.uniform1f(uTime, elapsed);
+    gl.bindVertexArray(vao);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.bindVertexArray(null);
+
+    requestAnimationFrame(loop);
+  }
+
+  // Context loss
+  const onLost = e => { e.preventDefault(); running = false; };
+  const onRestored = () => { running = true; requestAnimationFrame(loop); };
+  canvas.addEventListener('webglcontextlost', onLost);
+  canvas.addEventListener('webglcontextrestored', onRestored);
+
+  // Visibility
   const io = new IntersectionObserver(([entry]) => {
     const wasVisible = isVisible;
     isVisible = entry.isIntersecting;
-    if (isVisible && !wasVisible && !contextLost) {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(loop);
-    }
+    if (isVisible && !wasVisible) requestAnimationFrame(loop);
   }, { threshold: 0 });
   io.observe(container);
 
-  raf = requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
 
+  // Cleanup
   return () => {
-    cancelAnimationFrame(raf);
+    running = false;
     ro.disconnect();
     io.disconnect();
-    themeObserver.disconnect();
-    canvas.removeEventListener('webglcontextlost', handleContextLost);
-    canvas.removeEventListener('webglcontextrestored', handleContextRestored);
-    container.removeEventListener('mousemove', handleMouseMove);
-    try { container.removeChild(canvas); } catch {}
+    themeObs.disconnect();
+    canvas.removeEventListener('webglcontextlost', onLost);
+    canvas.removeEventListener('webglcontextrestored', onRestored);
+    container.removeEventListener('mousemove', onMouse);
     try { document.body.removeChild(container); } catch {}
   };
 }

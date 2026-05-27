@@ -7,13 +7,6 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/pages/agents.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<script type="importmap">
-{
-  "imports": {
-    "ogl": "https://esm.sh/ogl@1.0.9"
-  }
-}
-</script>
 </head>
 <body>
 <div class="diff-overlay"></div>
@@ -189,7 +182,7 @@ document.getElementById('totalCount').textContent = AGENTS.length;
 <script src="js/pages/agents.js"></script>
 <script type="module">
 import { initPlasma } from './js/plasma.js';
-initPlasma();
+initPlasma().catch(e => console.warn('[plasma] init failed:', e));
 </script>
 </body>
 </html>
