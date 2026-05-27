@@ -38,6 +38,7 @@ void mainImage(out vec4 o, vec2 C) {
   
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
+  vec2 Q;
 
   for (vec2 r = iResolution.xy; ++i < 60.; O += o.w/d*o.xyz) {
     p = z*normalize(vec3(C-.5*r,r.y)); 
