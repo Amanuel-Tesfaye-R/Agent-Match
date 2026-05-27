@@ -62,25 +62,92 @@
 
 .demo-side {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   border: 4px double var(--midground-base);
   border-left: none;
   background: var(--background-base);
   position: relative;
-  min-height: 160px;
+  min-height: 320px;
 }
 
-.demo-side small {
+.spotlight-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0.75rem;
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.spotlight-card:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 137, 0.03);
+}
+
+.spotlight-card-name {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
   color: var(--accent);
-  font-size: 0.9375rem;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.15rem;
+}
+
+.spotlight-card-category {
+  font-size: 0.5625rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  z-index: 1;
+  opacity: 0.45;
+  margin-bottom: 0.25rem;
+}
+
+.spotlight-card-desc {
+  font-size: 0.6875rem;
+  line-height: 1.4;
   opacity: 0.7;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.35rem;
+}
+
+.spotlight-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spotlight-card .pricing-tag {
+  font-size: 0.5625rem;
+  padding: 0.1rem 0.35rem;
+}
+
+.spotlight-label {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.625rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  opacity: 0.4;
+  z-index: 1;
   transition: opacity 0.3s;
 }
 
-.demo-side:hover small {
-  opacity: 1;
+.demo-side:hover .spotlight-label {
+  opacity: 0.7;
 }

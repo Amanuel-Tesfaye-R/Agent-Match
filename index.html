@@ -134,7 +134,8 @@
           </div>
         </div>
         <div class="demo-side">
-          <small>Agent Match</small>
+          <div class="spotlight-cards" id="spotlightCards"></div>
+          <small class="spotlight-label">Featured Agents</small>
         </div>
       </div>
     </div>
@@ -332,6 +333,46 @@ function animateTerminal() {
 }
 
 document.addEventListener('DOMContentLoaded', animateTerminal);
+</script>
+
+<script>
+function renderSpotlight() {
+  const container = document.getElementById('spotlightCards');
+  if (!container || !AGENTS) return;
+
+  const currentNames = new Set(
+    Array.from(container.querySelectorAll('.spotlight-card')).map(el => el.dataset.name)
+  );
+
+  let picks = [];
+  const pool = AGENTS.filter(a => !currentNames.has(a.name));
+  const shuffled = [...(pool.length >= 2 ? pool : AGENTS)].sort(() => Math.random() - 0.5);
+  picks = shuffled.slice(0, 2);
+
+  const tagClass = v =>
+    v === 'Free (Open)' || v === 'Free' ? 'tag-free' :
+    v === 'Freemium' ? 'tag-freemium' : 'tag-paid';
+
+  container.style.opacity = '0';
+  setTimeout(() => {
+    container.innerHTML = picks.map(a => `
+      <a href="${a.url || '#'}" target="_blank" rel="noopener" class="spotlight-card" data-name="${a.name}">
+        <span class="spotlight-card-name">${a.name} ↗</span>
+        <span class="spotlight-card-category">${a.category}</span>
+        <span class="spotlight-card-desc">${a.description}</span>
+        <div class="spotlight-card-footer">
+          <span class="pricing-tag ${tagClass(a.pricing)}">${a.pricing}</span>
+        </div>
+      </a>
+    `).join('');
+    container.style.opacity = '1';
+  }, 200);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSpotlight();
+  setInterval(renderSpotlight, 5000);
+});
 </script>
 
 </body>
