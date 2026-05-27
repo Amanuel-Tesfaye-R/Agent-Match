@@ -174,7 +174,7 @@ export async function initColorBends(config = {}) {
   const opts = {
     rotation: config.rotation ?? 90,
     speed: config.speed ?? 0.2,
-    colors: config.colors ?? ['#ff5c7a', '#8a5cff', '#00ffd1'],
+    colors: config.colors ?? ['#606060ff', '#908f92ff', '#2c2c2cff'],
     transparent: config.transparent ?? true,
     autoRotate: config.autoRotate ?? 0,
     scale: config.scale ?? 1,
