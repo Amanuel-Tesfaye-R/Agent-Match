@@ -522,7 +522,7 @@
   .terminal-section { grid-template-columns: 1fr; }
   .terminal-panel.border-l-0 { border-left: 4px double; border-top: none; }
   .grid-cell { border-right: none; }
-  .page-wrap { padding: 1rem; }
+  .page-wrap { padding: 1rem; overflow-x: hidden; }
 
   /* ─── Terminal & spotlight mobile ─── */
   .terminal-panel { padding-bottom: 0.5rem; }
