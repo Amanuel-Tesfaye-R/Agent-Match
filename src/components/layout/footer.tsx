@@ -1,18 +1,18 @@
 export function Footer() {
   return (
     <footer className="grid-12 border-t mt-8">
-      <div className="grid-cell" style={{ gridColumn: "span 2" }}>
+      <div className="grid-cell" style={{ gridColumn: "span 3" }}>
         <small className="tracking-xl opacity-70 text-xs">Agent Match</small>
         <small className="ml-2 text-xs opacity-50">v1.0.0</small>
       </div>
-      <div className="grid-cell" style={{ gridColumn: "span 4" }}>
+      <div className="grid-cell" style={{ gridColumn: "span 3" }}>
         <small className="tracking-xl opacity-50 text-xs">
-          Curated AI agent directory — updated regularly
+          Made by Amanuel Tesfaye
         </small>
       </div>
       <div className="grid-cell" style={{ gridColumn: "span 3" }}>
         <a
-          href="#"
+          href="https://github.com/Amanuel-Tesfaye-R/Agent-Match/issues/new"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-link"
@@ -22,7 +22,7 @@ export function Footer() {
       </div>
       <div className="grid-cell" style={{ gridColumn: "span 3" }}>
         <small className="text-xs opacity-50">
-          Open Source · MIT License · 2026
+          MIT License · {new Date().getFullYear()}
         </small>
       </div>
     </footer>
