@@ -134,7 +134,7 @@ export function SplineDemoSection() {
         </div>
         <TerminalAnimation />
       </div>
-      <div className="terminal-panel border-l-0 relative min-h-[420px] flex flex-col">
+      <div className="terminal-panel border-l-0 relative min-h-[260px] md:min-h-[420px] flex flex-col">
         <SpotlightCards />
         <small className="spotlight-label absolute right-3 bottom-2">Featured Agents</small>
       </div>
