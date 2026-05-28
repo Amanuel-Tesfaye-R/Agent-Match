@@ -13,11 +13,11 @@ export default function HomePage() {
         <Header />
 
         {/* Hero + Robot side by side */}
-        <div className="flex flex-col lg:flex-row border-b border-border my-8 lg:h-[580px]">
+        <div className="flex flex-col lg:flex-row border-b border-border my-4 lg:my-8 lg:h-[580px]">
           <div className="flex-1 min-w-0">
             <HeroSection layout="split" />
           </div>
-          <div className="w-full lg:w-[580px] shrink-0">
+          <div className="w-full lg:w-[580px] shrink-0 h-[380px] lg:h-auto">
             <RobotSection />
           </div>
         </div>
