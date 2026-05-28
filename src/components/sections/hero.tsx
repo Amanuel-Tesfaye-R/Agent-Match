@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-export function HeroSection() {
+export function HeroSection({ layout = "centered" }: { layout?: "centered" | "split" }) {
+  const isSplit = layout === "split";
   const [copied1, setCopied1] = useState(false);
   const [copied2, setCopied2] = useState(false);
 
@@ -15,7 +16,7 @@ export function HeroSection() {
   };
 
   return (
-    <div className="hero flex flex-col items-center justify-center text-center py-16 gap-6">
+    <div className={`hero flex flex-col ${isSplit ? "items-start justify-center text-left h-full py-8 pr-8" : "items-center justify-center text-center py-16"} gap-6`}>
       <div className="fade-in">
         <small className="hero-tag">Curated Directory • 70+ Agents</small>
         <span className="hero-title mix-lighter block">
@@ -23,11 +24,11 @@ export function HeroSection() {
         </span>
       </div>
       <div className="fade-in">
-        <p className="hero-desc">
+        <p className={`hero-desc ${isSplit ? "max-w-[480px]" : ""}`}>
           Not a list of wrappers around the same API. A living directory of specialised AI agents — video creators, music composers, coding partners, research assistants, and everything in between. Tell us what you need. We will point you to the right tool.
         </p>
       </div>
-      <div className="fade-in flex flex-col items-center gap-2 w-full max-w-[520px]">
+      <div className={`fade-in flex flex-col ${isSplit ? "items-start" : "items-center"} gap-2 w-full max-w-[520px]`}>
         <div className="code-block-wrap">
           <div className="flex justify-between items-center mb-1">
             <small className="tracking-xl opacity-50 text-xs">1. Describe</small>

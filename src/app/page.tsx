@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/sections/hero";
 import { SplineDemoSection } from "@/components/sections/spline-demo";
 import { FeaturesSection } from "@/components/sections/features";
 import { AgentTableSection } from "@/components/sections/agent-table";
+import { RobotSection } from "@/components/sections/robot-section";
 
 export default function HomePage() {
   return (
@@ -11,9 +12,13 @@ export default function HomePage() {
       <div className="page-wrap">
         <Header />
 
-        <div className="grid-12">
-          <div className="grid-cell" style={{ gridColumn: "span 12" }}>
-            <HeroSection />
+        {/* Hero + Robot side by side */}
+        <div className="flex flex-col lg:flex-row border-b border-border my-8 lg:h-[580px]">
+          <div className="flex-1 min-w-0">
+            <HeroSection layout="split" />
+          </div>
+          <div className="w-full lg:w-[580px] shrink-0">
+            <RobotSection />
           </div>
         </div>
 
