@@ -1,11 +1,7 @@
 'use client';
 
-import { SplineScene } from "@/components/ui/splite";
-import { Card } from "@/components/ui/card";
-import { Spotlight } from "@/components/ui/spotlight";
 import { useEffect, useState, useRef } from "react";
-import { AGENTS } from "@/data/agents";
-import { SplineSceneBasic } from "@/components/sections/spline-scene-demo";
+import { AGENTS, type Agent } from "@/data/agents";
 
 const TERMINAL_LINES = [
   { text: '> agent match --task "make a music video"', type: 'cmd' as const },
@@ -89,14 +85,12 @@ function TerminalAnimation() {
 }
 
 function SpotlightCards() {
-  const [picks, setPicks] = useState(() =>
-    [...AGENTS].sort(() => Math.random() - 0.5).slice(0, 2)
-  );
+  const [picks, setPicks] = useState<Agent[]>([]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPicks([...AGENTS].sort(() => Math.random() - 0.5).slice(0, 2));
-    }, 5000);
+    const shuffle = () => [...AGENTS].sort(() => Math.random() - 0.5).slice(0, 2);
+    setPicks(shuffle());
+    const interval = setInterval(() => setPicks(shuffle()), 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -105,9 +99,24 @@ function SpotlightCards() {
     v === 'Freemium' ? 'tag-freemium' : 'tag-paid';
 
   return (
-    <>
-      <SplineSceneBasic />
-    </>
+    <div className="spotlight-cards relative z-10">
+      {picks.map((agent) => (
+        <a
+          key={agent.name}
+          href={agent.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="spotlight-card"
+        >
+          <div className="spotlight-card-name">{agent.name}</div>
+          <div className="spotlight-card-desc">{agent.description}</div>
+          <div className="spotlight-card-footer">
+            <span className="cat-tag">{agent.category}</span>
+            <span className={`pricing-tag ${tagClass(agent.pricing)}`}>{agent.pricing}</span>
+          </div>
+        </a>
+      ))}
+    </div>
   );
 }
 
@@ -125,7 +134,7 @@ export function SplineDemoSection() {
         </div>
         <TerminalAnimation />
       </div>
-      <div className="terminal-panel border-l-0 relative min-h-[320px] flex flex-col">
+      <div className="terminal-panel border-l-0 relative min-h-[420px] flex flex-col">
         <SpotlightCards />
         <small className="spotlight-label absolute right-3 bottom-2">Featured Agents</small>
       </div>

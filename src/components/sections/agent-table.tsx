@@ -61,7 +61,7 @@ export function AgentTableSection() {
 
   const displayAgents = useMemo(() => {
     if (viewAll) return filtered;
-    return [...filtered].sort(() => Math.random() - 0.5).slice(0, 10);
+    return filtered.slice(0, 10);
   }, [filtered, viewAll]);
 
   return (
